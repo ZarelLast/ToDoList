@@ -1,17 +1,23 @@
 const postDom	= document.getElementById('post-txt');
 const inputDom	= document.getElementById('input-txt');
-const listDom	= document.getElementById('posted');
-const html		= localStorage.getItem('html')
-var nama = prompt('Masukan Nama : ');
-console.log(nama);
-listDom.innerHTML = html
+let listDom	= document.getElementById('posted');
+let html		= localStorage.getItem('html');
+listDom.innerHTML = html;
+let nama = localStorage.getItem('nama')
+
+if(!nama){
+	nama = prompt('Masukan Nama : ');
+	localStorage.setItem('nama',nama);
+}
+
 postDom.addEventListener('click', function(){
-	const post = inputDom.value
-	console.log('post')
-	listDom.innerHTML = listDom.innerHTML + "<li class='list'>"+"<strong>Hei "+nama+" ! </strong>"+post+"</li>"
-	inputDom.value = ''
-	localStorage.setItem('html', listDom.innerHTML)
+	const post = inputDom.value;
+	console.log('post');
+	listDom.innerHTML = listDom.innerHTML + "<li class='list'>"+"<strong>Hei "+nama+" ! </strong>"+post+"</li>";
+	inputDom.value = '';
+	localStorage.setItem('html', listDom.innerHTML);
 }); 
+
 function showTime(){
 	var date = new Date();
 	var h = date.getHours();
